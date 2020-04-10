@@ -62,7 +62,18 @@ for row in rows:
 
     #print(z)
     if len(z)!=0:
-        c,totc,newc,totd,newd,totrecv,Actcases,seri,avg,Avgd,totes,avgtes=z
+        #c,totc,newc,totd,newd,totrecv,Actcases,seri,avg,Avgd,totes,avgtes=z
+        c = z[0]
+        totc =z[1]
+        newc =z[2]
+        totd =z[3]
+        newd =z[4]
+        totrecv =z[5]
+        Actcases=z[6]
+        seri=z[7]
+        avg =z[8]
+        Avgd=z[9]
+        totes =z[10]
     
         d['Corona'].append({
             "Country":c,
