@@ -8,5 +8,8 @@ def tot():
 @app.route('/', methods=['GET'])
 def index():
     return jsonify(corona.d)
+@app.route('/yesterday', methods=['GET'])
+def yesterday():
+    return jsonify(corona.y)
 if __name__=="__main__":
     app.run(threaded=True, port=5000)
