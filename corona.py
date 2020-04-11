@@ -8,7 +8,8 @@ URL='https://www.worldometers.info/coronavirus/'
 headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
 page=requests.get(URL,headers=headers)
 soup=bs(page.content,'html.parser')
-table_body=soup.find('table')
+# yesterday=soup.findAll("div", {"id": "nav-yesterday"} )
+table_body=soup.find('table', {"id":"main_table_countries_yesterday"})
 rows = table_body.find_all('tr')
 l=[]
 d={
