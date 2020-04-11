@@ -8,11 +8,15 @@ URL='https://www.worldometers.info/coronavirus/'
 headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
 page=requests.get(URL,headers=headers)
 soup=bs(page.content,'html.parser')
-# yesterday=soup.findAll("div", {"id": "nav-yesterday"} )
-table_body=soup.find('table', {"id":"main_table_countries_yesterday"})
+table_body=soup.find('table', {"id":"main_table_countries_today"})
+table_body_yesterday=soup.find('table', {"id":"main_table_countries_yesterday"})
 rows = table_body.find_all('tr')
+rows_yesterday = table_body_yesterday.find_all('tr')
 l=[]
 d={
+    "Corona":[]
+    }
+y={
     "Corona":[]
     }
 f={
@@ -91,4 +95,39 @@ for row in rows:
             "AverageDeaths":Avgd
 
         })
+     
+mapping = {country.name: country.alpha_2 for country in pycountry.countries}    
+for row in rows_yesterday:
+    cols=row.find_all('td')
+    z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
 
+    #print(z)
+    if len(z)!=0:
+        #c,totc,newc,totd,newd,totrecv,Actcases,seri,avg,Avgd,totes,avgtes=z
+        c = z[0]
+        totc =z[1]
+        newc =z[2]
+        totd =z[3]
+        newd =z[4]
+        totrecv =z[5]
+        Actcases=z[6]
+        seri=z[7]
+        avg =z[8]
+        Avgd=z[9]
+        totes =z[10]
+    
+        y['Corona'].append({
+            "Country":c,
+            "Code":str(mapping.get(c)).lower(),
+            "TotalCases":totc,
+    
+            "NewCases":newc,
+            "TotalDeaths":totd,
+            "NewDeaths":newd,
+            "TotalRecoverd":totrecv,
+            "ActiveCases":Actcases,
+            "Serious":seri,
+            "Average":avg,
+            "AverageDeaths":Avgd
+
+        })
