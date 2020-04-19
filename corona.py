@@ -151,11 +151,7 @@ for row in source_news_li:
     strong=row.find_all('strong')
 #     for link in row.findAll('a', attrs={'href': re.compile("^http")}):
 #         url = link.get('href')
-#     a=row.find_all('a', {"class": "news_source_a"})
-#     a = span.find_all("a",{"class":"news_source_a"})
-#     link = a['href']
-#     link = a.get('href')
-#     link = a.href.strip()
+
     z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
 
     print(z)
@@ -167,8 +163,7 @@ for row in source_news_li:
         part = part1+ " " +part2
     
         s['Corona'].append({
-            "new_cases":part1,
-            "new_deaths": part2
+            "part":part,
             "country_name":country_name,
 #             "link":url
         })
