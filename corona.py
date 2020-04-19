@@ -4,6 +4,7 @@ import requests
 import json
 import pycountry
 from datetime import datetime
+import re
 
 today = datetime.today().strftime('%Y-%m-%d')
 
