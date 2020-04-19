@@ -142,18 +142,18 @@ for row in rows_yesterday:
         })
         
         
-# source_list=soup.find('div', {"id":"newsdate"+today})
+source_list=soup.find('div', {"id":"newsdate"+today})
 # # source_list=soup.find('div', {"id":"news_block"})
-# source_news_li = source_list.find_all("li", {"class":"news_li"})
+source_news_li = source_list.find_all("li", {"class":"news_li"})
 
-# for row in source_news_li:
+for row in source_news_li:
 #     url = ""
 #     for link in row.find_all('a', attrs={'href': re.compile("^http")}):
 #         url = link.get('href')
-#     strong=row.find_all('strong')
-#     z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
+    strong=row.find_all('strong')
+    z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
 
-#     print(z)
+    print(z)
 #     if len(z)!=0:
 #         part1 = z[0]
 #         part2 =z[1]
