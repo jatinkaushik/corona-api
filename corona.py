@@ -152,7 +152,7 @@ for row in source_news_li:
 #     link = a['href']
 #     link = a.get('href')
 #     link = a.href.strip()
-    z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
+    z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
 
     print(z)
     if len(z)!=0:
