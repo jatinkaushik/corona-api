@@ -153,7 +153,7 @@ for row in source_news_li:
     strong=row.find_all('strong')
     z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
 
-    print(z)
+    print(z[0])
 #     if len(z)!=0:
 #         part1=z[0]
 #         part2=z[1]
