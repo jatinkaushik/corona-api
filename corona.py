@@ -13,8 +13,7 @@ page=requests.get(URL,headers=headers)
 soup=bs(page.content,'html.parser')
 table_body=soup.find('table', {"id":"main_table_countries_today"})
 # source_list=soup.find('div', {"id":"newsdate"+today})
-source_list=soup.find('div', {"id":"news_block"})
-source_news_li = source_list.find_all("li", {"class":"news_li"})
+
 table_body_yesterday=soup.find('table', {"id":"main_table_countries_yesterday"})
 rows = table_body.find_all('tr')
 rows_yesterday = table_body_yesterday.find_all('tr')
@@ -142,12 +141,16 @@ for row in rows_yesterday:
         })
         
         
+source_list=soup.find('div', {"id":"newsdate"+today})
+# source_list=soup.find('div', {"id":"news_block"})
+source_news_li = source_list.find_all("li", {"class":"news_li"})
 
 for row in source_news_li:
     strong=row.find_all('strong')
-    span=row.find('span')
-#     a = span.find("a",{"class":"news_source_a"})
+    a=row.find('a', {"class": "news_source_a"})
+#     a = span.find_all("a",{"class":"news_source_a"})
 #     link = a['href']
+    link = a.get('href')
     z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
 
     print(z)
@@ -159,7 +162,8 @@ for row in source_news_li:
         part = part1+ " " +part2
     
         s['Corona'].append({
-            "part":part,
+            "new_cases":part1,
+            "new_deaths": part2
             "country_name":country_name,
-#             "link":link
+            "link":link
         })
