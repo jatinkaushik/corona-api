@@ -147,10 +147,11 @@ source_news_li = source_list.find_all("li", {"class":"news_li"})
 
 for row in source_news_li:
     strong=row.find_all('strong')
-    a=row.find('a', {"class": "news_source_a"})
+    a=row.find_all('a', {"class": "news_source_a"})
 #     a = span.find_all("a",{"class":"news_source_a"})
 #     link = a['href']
-    link = a.get('href')
+#     link = a.get('href')
+    link = a.href.strip()
     z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
 
     print(z)
