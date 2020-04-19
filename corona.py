@@ -146,7 +146,7 @@ for row in rows_yesterday:
 for row in source_news_li:
     strong=row.find_all('strong')
     span=row.find('span')
-    a = span.find("a",{"class":"news_source_a"})
+#     a = span.find("a",{"class":"news_source_a"})
 #     link = a['href']
     z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
 
