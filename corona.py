@@ -149,8 +149,8 @@ source_news_li = source_list.find_all("li", {"class":"news_li"})
 for row in source_news_li:
     url = ""
     strong=row.find_all('strong')
-    for link in row.findAll('a', attrs={'href': re.compile("^http")}):
-        url = link.get('href')
+#     for link in row.findAll('a', attrs={'href': re.compile("^http")}):
+#         url = link.get('href')
 #     a=row.find_all('a', {"class": "news_source_a"})
 #     a = span.find_all("a",{"class":"news_source_a"})
 #     link = a['href']
@@ -170,5 +170,5 @@ for row in source_news_li:
             "new_cases":part1,
             "new_deaths": part2
             "country_name":country_name,
-            "link":url
+#             "link":url
         })
