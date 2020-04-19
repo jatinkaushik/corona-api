@@ -3,6 +3,12 @@ from urllib.request import urlopen as ur
 import requests
 import json
 import pycountry
+import re
+from datetime import datetime
+
+
+today = datetime.today().strftime('%Y-%m-%d')
+
 
 URL='https://www.worldometers.info/coronavirus/'
 headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
@@ -132,19 +138,19 @@ for row in rows_yesterday:
 
         })
 
-# source_list=soup.find('div', {"id":"newsdate"+today})
-source_list=soup.find('div', {"id":"news_block"})
+source_list=soup.find('div', {"id":"newsdate"+today})
+# source_list=soup.find('div', {"id":"news_block"})
 source_news_li = source_list.find_all("li", {"class":"news_li"})
 
 for row in source_news_li:
-#     url = ""
+    url = ""
     strong=row.find_all('strong')
-#     for link in row.findAll('a', attrs={'href': re.compile("^http")}):
-#         url = link.get('href')
+    for link in row.findAll('a', attrs={'href': re.compile("^http")}):
+        url = link.get('href')
 
     z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
 
-    print(z)
+#     print(z)
     if len(z)!=0:
         #c,totc,newc,totd,newd,totrecv,Actcases,seri,avg,Avgd,totes,avgtes=z
         part1 = z[0]
@@ -155,6 +161,6 @@ for row in source_news_li:
         s['Corona'].append({
             "part":part,
             "country_name":country_name,
-#             "link":url
+            "link":url
         })
         
