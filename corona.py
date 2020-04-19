@@ -153,15 +153,15 @@ for row in source_news_li:
     strong=row.find_all('strong')
     z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
 
-    print(url)
-#     if len(z)!=0:
-#         part1 = z[0]
-#         part2 =z[1]
-#         country_name =z[2]
-#         part = part1+ " " +part2
+#     print(url)
+    if len(z)!=0:
+        part1 = z[0]
+        part2 =z[1]
+        country_name =z[2]
+        part = part1+ " " +part2
     
-#         s['Corona'].append({
-#             "part":part,
-#             "country_name":country_name,
-#             "link":url
-#         })
+        s['Corona'].append({
+            "part":part,
+            "country_name":country_name,
+            "link":url
+        })
