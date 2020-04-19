@@ -148,12 +148,30 @@ source_news_li = source_list.find_all("li", {"class":"news_li"})
 
 for row in source_news_li:
     url = ""
+    death = ""
+    case = ""
+    country = ""
     for link in row.find_all('a', attrs={'href': re.compile("^http")}):
         url = link.get('href')
     strong=row.find_all('strong')
     z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
+    for string in z:
+        if (string.find("case")): 
+            case = string
+        elif (string.find("death")): 
+            death = string
+        else:
+            country = string
+            
+    s['Corona'].append({
+            "case":case,
+            "death":death,
+            "country":country,
+            "link":url
+    }) 
+            
 
-    print(z[0])
+#     print(z[0])
 #     if len(z)!=0:
 #         part1=z[0]
 #         part2=z[1]
@@ -161,9 +179,4 @@ for row in source_news_li:
 #         print(z)
 # #         part = part1+ " " +part2
     
-#         s['Corona'].append({
-#             "part1":part1,
-#             "part2":part2,
-#             "country_name":country_name,
-#             "link":url
-#         })
+        
