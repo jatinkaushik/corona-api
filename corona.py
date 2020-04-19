@@ -137,7 +137,7 @@ source_list=soup.find('div', {"id":"news_block"})
 source_news_li = source_list.find_all("li", {"class":"news_li"})
 
 for row in source_news_li:
-    url = ""
+#     url = ""
     strong=row.find_all('strong')
 #     for link in row.findAll('a', attrs={'href': re.compile("^http")}):
 #         url = link.get('href')
