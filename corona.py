@@ -142,8 +142,8 @@ for row in rows_yesterday:
         })
         
         
-source_list=soup.find('div', {"id":"newsdate"+today})
-# source_list=soup.find('div', {"id":"news_block"})
+# source_list=soup.find('div', {"id":"newsdate"+today})
+source_list=soup.find('div', {"id":"news_block"})
 source_news_li = source_list.find_all("li", {"class":"news_li"})
 
 for row in source_news_li:
