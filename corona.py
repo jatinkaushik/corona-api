@@ -147,10 +147,10 @@ for row in source_news_li:
     strong=row.find_all('strong')
     span=row.find('span')
     a = span.find("a",{"class":"news_source_a"})
-    link = a['href']
+#     link = a['href']
     z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
 
-    #print(z)
+    print(z)
     if len(z)!=0:
         #c,totc,newc,totd,newd,totrecv,Actcases,seri,avg,Avgd,totes,avgtes=z
         part1 = z[0]
@@ -161,5 +161,5 @@ for row in source_news_li:
         s['Corona'].append({
             "part":part,
             "country_name":country_name,
-            "link":link
+#             "link":link
         })
