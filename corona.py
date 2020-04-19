@@ -146,8 +146,8 @@ for row in rows_yesterday:
 for row in source_news_li:
     strong=row.find_all('strong')
     span=row.find_all('span')
-    a = span.find('a')
-    link = a.get('href')
+#     a = span.find('a')
+#     link = a.get('href')
     z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
 
     #print(z)
@@ -161,6 +161,5 @@ for row in source_news_li:
         s['Corona'].append({
             "part":part,
             "country_name":country_name,
-            "link":link
-
+#             "link":link
         })
