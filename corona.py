@@ -156,9 +156,9 @@ for row in source_news_li:
     strong=row.find_all('strong')
     z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
     for string in z:
-        if (string.find("case")): 
+        if ("case" in string): 
             case = string
-        elif (string.find("death")): 
+        elif ("death" in string): 
             death = string
         else:
             country = string
