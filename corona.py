@@ -151,7 +151,7 @@ for row in source_news_li:
 #     a = span.find_all("a",{"class":"news_source_a"})
 #     link = a['href']
 #     link = a.get('href')
-    link = a.href.strip()
+#     link = a.href.strip()
     z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
 
     print(z)
@@ -166,5 +166,5 @@ for row in source_news_li:
             "new_cases":part1,
             "new_deaths": part2
             "country_name":country_name,
-            "link":link
+#             "link":link
         })
