@@ -3,22 +3,31 @@ from urllib.request import urlopen as ur
 import requests
 import json
 import pycountry
+from datetime import datetime
+
+today = datetime.today().strftime('%Y-%m-%d')
 
 URL='https://www.worldometers.info/coronavirus/'
 headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
 page=requests.get(URL,headers=headers)
 soup=bs(page.content,'html.parser')
 table_body=soup.find('table', {"id":"main_table_countries_today"})
+# source_list=soup.find('div', {"id":"newsdate"+today})
+source_list=soup.find('div', {"id":"news_block"})
+source_news_li = source_list.find_all('li', {"class":"news_li"})
 table_body_yesterday=soup.find('table', {"id":"main_table_countries_yesterday"})
 rows = table_body.find_all('tr')
 rows_yesterday = table_body_yesterday.find_all('tr')
 l=[]
 d={
     "Corona":[]
-    }
+}
 y={
     "Corona":[]
-    }
+}
+s ={
+    "Corona":[]
+}
 f={
     "Main":[]
 }
@@ -129,5 +138,29 @@ for row in rows_yesterday:
             "Serious":seri,
             "Average":avg,
             "AverageDeaths":Avgd
+
+        })
+        
+        
+
+for row in source_news_li:
+    strong=row.find_all('strong')
+    span=row.find_all('span')
+    a = span.find('a')
+    link = a.get('href')
+    z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
+
+    #print(z)
+    if len(z)!=0:
+        #c,totc,newc,totd,newd,totrecv,Actcases,seri,avg,Avgd,totes,avgtes=z
+        part1 = z[0]
+        part2 =z[1]
+        country_name =z[2]
+        part = part1+ " " +part2
+    
+        s['Corona'].append({
+            "part":part,
+            "country_name":country_name,
+            "link":link
 
         })
