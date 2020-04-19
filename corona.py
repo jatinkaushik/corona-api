@@ -160,9 +160,9 @@ for row in source_news_li:
         country_name =z[2]
 #         part = part1+ " " +part2
     
-        s['Corona'].append({
-            "part1":part1,
-            "part2":part2,
-            "country_name":country_name,
-#             "link":url
-        })
+#         s['Corona'].append({
+#             "part1":part1,
+#             "part2":part2,
+#             "country_name":country_name,
+# #             "link":url
+#         })
