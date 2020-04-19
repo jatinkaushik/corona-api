@@ -14,7 +14,7 @@ soup=bs(page.content,'html.parser')
 table_body=soup.find('table', {"id":"main_table_countries_today"})
 # source_list=soup.find('div', {"id":"newsdate"+today})
 source_list=soup.find('div', {"id":"news_block"})
-source_news_li = source_list.find_all('li', {"class":"news_li"})
+source_news_li = source_list.find_all("li", {"class":"news_li"})
 table_body_yesterday=soup.find('table', {"id":"main_table_countries_yesterday"})
 rows = table_body.find_all('tr')
 rows_yesterday = table_body_yesterday.find_all('tr')
@@ -145,9 +145,9 @@ for row in rows_yesterday:
 
 for row in source_news_li:
     strong=row.find_all('strong')
-    span=row.find_all('span')
-#     a = span.find('a')
-#     link = a.get('href')
+    span=row.find('span')
+    a = span.find("a",{"class":"news_source_a"})
+    link = a['href']
     z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
 
     #print(z)
@@ -161,5 +161,5 @@ for row in source_news_li:
         s['Corona'].append({
             "part":part,
             "country_name":country_name,
-#             "link":link
+            "link":link
         })
