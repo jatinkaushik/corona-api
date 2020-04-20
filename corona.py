@@ -7,7 +7,9 @@ from datetime import datetime
 import re
 
 today = datetime.today().strftime('%Y-%m-%d')
-yesterday = datetime.today().strftime('%Y-%m-%d') - timedelta(days=1)
+yesterday = datetime.today() - timedelta(days=1)
+yesterday = yesterday.strftime('%Y-%m-%d')
+print(yesterday)
 
 URL='https://www.worldometers.info/coronavirus/'
 headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
