@@ -14,5 +14,8 @@ def yesterday():
 @app.route('/source', methods=['GET'])
 def source():
     return jsonify(corona.s)
+@app.route('/source_yesterday', methods=['GET'])
+def source_yesterday():
+    return jsonify(corona.sy)
 if __name__=="__main__":
     app.run(threaded=True, port=5000)
