@@ -7,6 +7,7 @@ from datetime import datetime
 import re
 
 today = datetime.today().strftime('%Y-%m-%d')
+yesterday = datetime.today().strftime('%Y-%m-%d') - timedelta(days=1)
 
 URL='https://www.worldometers.info/coronavirus/'
 headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
@@ -26,6 +27,9 @@ y={
     "Corona":[]
 }
 s ={
+    "Corona":[]
+}
+sy ={
     "Corona":[]
 }
 f={
@@ -169,14 +173,34 @@ for row in source_news_li:
             "country":country,
             "link":url
     }) 
-            
+    
+source_list=soup.find('div', {"id":"newsdate"+today})
+# # source_list=soup.find('div', {"id":"news_block"})
+source_news_li = source_list.find_all("li", {"class":"news_li"})
 
-#     print(z[0])
-#     if len(z)!=0:
-#         part1=z[0]
-#         part2=z[1]
-#         country_name=z[2]
-#         print(z)
-# #         part = part1+ " " +part2
+for row in source_news_li:
+    url = ""
+    death = ""
+    case = ""
+    country = ""
+    for link in row.find_all('a', attrs={'href': re.compile("^http")}):
+        url = link.get('href')
+    strong=row.find_all('strong')
+    z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
+    for string in z:
+        if ("case" in string): 
+            case = string
+        elif ("death" in string): 
+            death = string
+        else:
+            country = string
+            
+    sy['Corona'].append({
+            "case":case,
+            "death":death,
+            "country":country,
+            "link":url
+    }) 
+            
     
         
