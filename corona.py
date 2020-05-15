@@ -106,6 +106,8 @@ mapping = {country.name: country.alpha_2 for country in pycountry.countries}
 for row in rows_yesterday:
     cols=row.find_all('td')
     z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
+    for i in z:
+        print(i)
 
     #print(z)
     if len(z)!=0:
