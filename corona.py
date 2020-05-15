@@ -84,17 +84,17 @@ for row in rows:
     #print(z)
     if len(z)!=0:
         #c,totc,newc,totd,newd,totrecv,Actcases,seri,avg,Avgd,totes,avgtes=z
-        c = z[0]
-        totc =z[1]
-        newc =z[2]
-        totd =z[3]
-        newd =z[4]
-        totrecv =z[5]
-        Actcases=z[6]
-        seri=z[7]
-        avg =z[8]
-        Avgd=z[9]
-        totes =z[10]
+        c = z[1]
+        totc =z[2]
+        newc =z[3]
+        totd =z[4]
+        newd =z[5]
+        totrecv =z[6]
+        Actcases=z[7]
+        seri=z[8]
+        avg =z[9]
+        Avgd=z[2]
+        totes =z[11]
     
         d['Corona'].append({
             "Country":c,
@@ -120,17 +120,17 @@ for row in rows_yesterday:
     #print(z)
     if len(z)!=0:
         #c,totc,newc,totd,newd,totrecv,Actcases,seri,avg,Avgd,totes,avgtes=z
-        c = z[0]
-        totc =z[1]
-        newc =z[2]
-        totd =z[3]
-        newd =z[4]
-        totrecv =z[5]
-        Actcases=z[6]
-        seri=z[7]
-        avg =z[8]
-        Avgd=z[9]
-        totes =z[10]
+        c = z[1]
+        totc =z[2]
+        newc =z[3]
+        totd =z[4]
+        newd =z[5]
+        totrecv =z[6]
+        Actcases=z[7]
+        seri=z[8]
+        avg =z[9]
+        Avgd=z[2]
+        totes =z[11]
     
         y['Corona'].append({
             "Country":c,
