@@ -109,7 +109,7 @@ for row in rows_yesterday:
     temp1= 0
     for i in z:
         print(temp1," - ",i)
-        temp1++
+        temp1 +=1
 
     #print(z)
     if len(z)!=0:
