@@ -20,23 +20,13 @@ def return_soup():
 
 
 l=[]
-d={
-    "Corona":[]
-}
-y={
-    "Corona":[]
-}
-s ={
-    "Corona":[]
-}
-sy ={
-    "Corona":[]
-}
-f={
-    "Main":[]
-}
+
+
 #to find the Main Header
 def return_total_data():
+    f={
+       "Main":[]
+    }
     soup = return_soup()
     ss=[]
     mains=soup.findAll("div", {"id": "maincounter-wrap"} )
@@ -77,6 +67,9 @@ def return_total_data():
 
 #To get table data
 def data_today():
+    d={
+        "Corona":[]
+    }
     soup = return_soup()
     table_body=soup.find('table', {"id":"main_table_countries_today"})
     rows = table_body.find_all('tr')
@@ -118,6 +111,9 @@ def data_today():
     return d
     
 def data_yesterday():
+    y={
+      "Corona":[]
+    }
     soup = return_soup()
     table_body_yesterday=soup.find('table', {"id":"main_table_countries_yesterday"})
     rows_yesterday = table_body_yesterday.find_all('tr')
@@ -158,6 +154,9 @@ def data_yesterday():
     return y
          
 def source_today():
+    s ={
+      "Corona":[]
+    }
     today = datetime.today().strftime('%Y-%m-%d')
     soup = return_soup()
     source_list=soup.find('div', {"id":"newsdate"+today})
@@ -190,6 +189,9 @@ def source_today():
     return s
     
 def source_yesterday():
+    sy ={
+      "Corona":[]
+    }
     yesterday = datetime.today() - timedelta(days=1)
     yesterday = yesterday.strftime('%Y-%m-%d')
     soup = return_soup()
