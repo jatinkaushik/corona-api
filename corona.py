@@ -7,21 +7,18 @@ from datetime import datetime
 from datetime import timedelta
 import re
 
-today = datetime.today().strftime('%Y-%m-%d')
-yesterday = datetime.today() - timedelta(days=1)
-yesterday = yesterday.strftime('%Y-%m-%d')
-print(yesterday)
+# print(yesterday)
 
-URL='https://www.worldometers.info/coronavirus/'
-headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
-page=requests.get(URL,headers=headers)
-soup=bs(page.content,'html.parser')
-table_body=soup.find('table', {"id":"main_table_countries_today"})
+def return_soup():
+    URL='https://www.worldometers.info/coronavirus/'
+    headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
+    page=requests.get(URL,headers=headers)
+    soup=bs(page.content,'html.parser')
+    return soup
+
 # source_list=soup.find('div', {"id":"newsdate"+today})
 
-table_body_yesterday=soup.find('table', {"id":"main_table_countries_yesterday"})
-rows = table_body.find_all('tr')
-rows_yesterday = table_body_yesterday.find_all('tr')
+
 l=[]
 d={
     "Corona":[]
@@ -77,6 +74,9 @@ f["Main"].append({
 
 #To get table data
 def data_today():
+    soup = return_soup()
+    table_body=soup.find('table', {"id":"main_table_countries_today"})
+    rows = table_body.find_all('tr')
     mapping = {country.name: country.alpha_2 for country in pycountry.countries}
     for row in rows:
         cols=row.find_all('td')
@@ -115,6 +115,9 @@ def data_today():
     return d
     
 def data_yesterday():
+    soup = return_soup()
+    table_body_yesterday=soup.find('table', {"id":"main_table_countries_yesterday"})
+    rows_yesterday = table_body_yesterday.find_all('tr')
     mapping = {country.name: country.alpha_2 for country in pycountry.countries}    
     for row in rows_yesterday:
         cols=row.find_all('td')
@@ -152,7 +155,8 @@ def data_yesterday():
     return y
          
 def source_today():
-    
+    today = datetime.today().strftime('%Y-%m-%d')
+    soup = return_soup()
     source_list=soup.find('div', {"id":"newsdate"+today})
     # # source_list=soup.find('div', {"id":"news_block"})
     source_news_li = source_list.find_all("li", {"class":"news_li"})
@@ -183,6 +187,9 @@ def source_today():
     return s
     
 def source_yesterday():
+    yesterday = datetime.today() - timedelta(days=1)
+    yesterday = yesterday.strftime('%Y-%m-%d')
+    soup = return_soup()
     source_list=soup.find('div', {"id":"newsdate"+yesterday})
     # # source_list=soup.find('div', {"id":"news_block"})
     source_news_li = source_list.find_all("li", {"class":"news_li"})
