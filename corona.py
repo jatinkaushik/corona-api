@@ -76,134 +76,138 @@ f["Main"].append({
 #To get table data
 
 #To get table data
-mapping = {country.name: country.alpha_2 for country in pycountry.countries}
-for row in rows:
-    cols=row.find_all('td')
-    z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
+def data_today():
+    mapping = {country.name: country.alpha_2 for country in pycountry.countries}
+    for row in rows:
+        cols=row.find_all('td')
+        z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
 
-    #print(z)
-    if len(z)!=0:
-        #c,totc,newc,totd,newd,totrecv,Actcases,seri,avg,Avgd,totes,avgtes=z
-        c = z[1]
-        totc =z[2]
-        newc =z[3]
-        totd =z[4]
-        newd =z[5]
-        totrecv =z[6]
-        Actcases=z[7]
-        seri=z[8]
-        avg =z[9]
-        Avgd=z[2]
-        totes =z[11]
-    
-        d['Corona'].append({
-            "Country":c,
-            "Code":str(mapping.get(c)).lower(),
-            "TotalCases":totc,
-    
-            "NewCases":newc,
-            "TotalDeaths":totd,
-            "NewDeaths":newd,
-            "TotalRecoverd":totrecv,
-            "ActiveCases":Actcases,
-            "Serious":seri,
-            "Average":avg,
-            "AverageDeaths":Avgd
+        #print(z)
+        if len(z)!=0:
+            #c,totc,newc,totd,newd,totrecv,Actcases,seri,avg,Avgd,totes,avgtes=z
+            c = z[1]
+            totc =z[2]
+            newc =z[3]
+            totd =z[4]
+            newd =z[5]
+            totrecv =z[6]
+            Actcases=z[7]
+            seri=z[8]
+            avg =z[9]
+            Avgd=z[2]
+            totes =z[11]
 
-        })
-     
-mapping = {country.name: country.alpha_2 for country in pycountry.countries}    
-for row in rows_yesterday:
-    cols=row.find_all('td')
-    z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
+            d['Corona'].append({
+                "Country":c,
+                "Code":str(mapping.get(c)).lower(),
+                "TotalCases":totc,
 
-    #print(z)
-    if len(z)!=0:
-        #c,totc,newc,totd,newd,totrecv,Actcases,seri,avg,Avgd,totes,avgtes=z
-        c = z[1]
-        totc =z[2]
-        newc =z[3]
-        totd =z[4]
-        newd =z[5]
-        totrecv =z[6]
-        Actcases=z[7]
-        seri=z[8]
-        avg =z[9]
-        Avgd=z[2]
-        totes =z[11]
-    
-        y['Corona'].append({
-            "Country":c,
-            "Code":str(mapping.get(c)).lower(),
-            "TotalCases":totc,
-    
-            "NewCases":newc,
-            "TotalDeaths":totd,
-            "NewDeaths":newd,
-            "TotalRecoverd":totrecv,
-            "ActiveCases":Actcases,
-            "Serious":seri,
-            "Average":avg,
-            "AverageDeaths":Avgd
+                "NewCases":newc,
+                "TotalDeaths":totd,
+                "NewDeaths":newd,
+                "TotalRecoverd":totrecv,
+                "ActiveCases":Actcases,
+                "Serious":seri,
+                "Average":avg,
+                "AverageDeaths":Avgd
 
-        })
-        
-        
-source_list=soup.find('div', {"id":"newsdate"+today})
-# # source_list=soup.find('div', {"id":"news_block"})
-source_news_li = source_list.find_all("li", {"class":"news_li"})
-
-for row in source_news_li:
-    url = ""
-    death = ""
-    case = ""
-    country = ""
-    for link in row.find_all('a', attrs={'href': re.compile("^http")}):
-        url = link.get('href')
-    strong=row.find_all('strong')
-    z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
-    for string in z:
-        if ("case" in string): 
-            case = string
-        elif ("death" in string): 
-            death = string
-        else:
-            country = string
-            
-    s['Corona'].append({
-            "case":case,
-            "death":death,
-            "country":country,
-            "link":url
-    }) 
+            })
+    return d
     
-source_list=soup.find('div', {"id":"newsdate"+yesterday})
-# # source_list=soup.find('div', {"id":"news_block"})
-source_news_li = source_list.find_all("li", {"class":"news_li"})
+def data_yesterday():
+    mapping = {country.name: country.alpha_2 for country in pycountry.countries}    
+    for row in rows_yesterday:
+        cols=row.find_all('td')
+        z=['0' if v.text.strip() == "" else v.text.strip() for v in cols]
 
-for row in source_news_li:
-    url = ""
-    death = ""
-    case = ""
-    country = ""
-    for link in row.find_all('a', attrs={'href': re.compile("^http")}):
-        url = link.get('href')
-    strong=row.find_all('strong')
-    z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
-    for string in z:
-        if ("case" in string): 
-            case = string
-        elif ("death" in string): 
-            death = string
-        else:
-            country = string
-            
-    sy['Corona'].append({
-            "case":case,
-            "death":death,
-            "country":country,
-            "link":url
-    }) 
-            
+        #print(z)
+        if len(z)!=0:
+            #c,totc,newc,totd,newd,totrecv,Actcases,seri,avg,Avgd,totes,avgtes=z
+            c = z[1]
+            totc =z[2]
+            newc =z[3]
+            totd =z[4]
+            newd =z[5]
+            totrecv =z[6]
+            Actcases=z[7]
+            seri=z[8]
+            avg =z[9]
+            Avgd=z[2]
+            totes =z[11]
+
+            y['Corona'].append({
+                "Country":c,
+                "Code":str(mapping.get(c)).lower(),
+                "TotalCases":totc,
+
+                "NewCases":newc,
+                "TotalDeaths":totd,
+                "NewDeaths":newd,
+                "TotalRecoverd":totrecv,
+                "ActiveCases":Actcases,
+                "Serious":seri,
+                "Average":avg,
+                "AverageDeaths":Avgd
+            })
+    return y
+         
+def source_today():
     
-        
+    source_list=soup.find('div', {"id":"newsdate"+today})
+    # # source_list=soup.find('div', {"id":"news_block"})
+    source_news_li = source_list.find_all("li", {"class":"news_li"})
+
+    for row in source_news_li:
+        url = ""
+        death = ""
+        case = ""
+        country = ""
+        for link in row.find_all('a', attrs={'href': re.compile("^http")}):
+            url = link.get('href')
+        strong=row.find_all('strong')
+        z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
+        for string in z:
+            if ("case" in string): 
+                case = string
+            elif ("death" in string): 
+                death = string
+            else:
+                country = string
+
+        s['Corona'].append({
+                "case":case,
+                "death":death,
+                "country":country,
+                "link":url
+        }) 
+    return s
+    
+def source_yesterday():
+    source_list=soup.find('div', {"id":"newsdate"+yesterday})
+    # # source_list=soup.find('div', {"id":"news_block"})
+    source_news_li = source_list.find_all("li", {"class":"news_li"})
+
+    for row in source_news_li:
+        url = ""
+        death = ""
+        case = ""
+        country = ""
+        for link in row.find_all('a', attrs={'href': re.compile("^http")}):
+            url = link.get('href')
+        strong=row.find_all('strong')
+        z=['0' if v.text.strip() == "" else v.text.strip() for v in strong]
+        for string in z:
+            if ("case" in string): 
+                case = string
+            elif ("death" in string): 
+                death = string
+            else:
+                country = string
+
+        sy['Corona'].append({
+                "case":case,
+                "death":death,
+                "country":country,
+                "link":url
+        }) 
+    return sy
