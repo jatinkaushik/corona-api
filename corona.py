@@ -87,11 +87,11 @@ def data_today():
             totd =z[4]
             newd =z[5]
             totrecv =z[6]
-            Actcases=z[7]
-            seri=z[8]
-            avg =z[9]
-            Avgd=z[2]
-            totes =z[11]
+            Actcases=z[8]
+            seri=z[9]
+            avg =z[10]
+            Avgd=z[11]
+            totes =z[12]
 
             d['Corona'].append({
                 "Country":c,
@@ -131,11 +131,11 @@ def data_yesterday():
             totd =z[4]
             newd =z[5]
             totrecv =z[6]
-            Actcases=z[7]
-            seri=z[8]
-            avg =z[9]
-            Avgd=z[2]
-            totes =z[11]
+            Actcases=z[8]
+            seri=z[9]
+            avg =z[10]
+            Avgd=z[11]
+            totes =z[12]
 
             y['Corona'].append({
                 "Country":c,
